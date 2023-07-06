@@ -53,5 +53,5 @@ button {
 button:disabled {
   color: #ffffff;
   opacity: 0.5;
-  cursor: not-allowed;
+
 }

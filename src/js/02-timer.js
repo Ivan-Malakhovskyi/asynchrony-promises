@@ -1,7 +1,7 @@
 import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
-import 'flatpickr/dist/flatpickr.min.css';
 
 const flatpickr = require('flatpickr');
 let flatpickrInstance;
