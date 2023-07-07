@@ -3,9 +3,26 @@ import 'flatpickr/dist/flatpickr.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
 
-const flatpickr = require('flatpickr');
-let flatpickrInstance;
 let intervalId;
+
+const options = {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: Date.now(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    const selectedDate = selectedDates[0];
+
+    if (!selectedDate || selectedDate < Date.now()) {
+      Notify.failure('Please choose a date in the future');
+      refs.btnStart.disabled = true;
+    } else {
+      refs.btnStart.disabled = false;
+    }
+  },
+};
+
+const flatpickrInstance = flatpickr('#datetime-picker', options);
 
 const refs = {
   btnStart: document.querySelector('[data-start]'),
@@ -30,7 +47,7 @@ function updateClockValue(formattedTime) {
 function onCheckUserDate(evt) {
   const selectedDate = flatpickrInstance.selectedDates[0];
 
-  if (selectedDate >= Date.now()) {
+  if (selectedDate > Date.now()) {
     evt.target.disabled = false;
 
     Notify.success('The timer has started');
@@ -81,22 +98,3 @@ function addLeadingZero(value) {
 console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
-const options = {
-  enableTime: true,
-  time_24hr: true,
-  defaultDate: Date.now(),
-  minuteIncrement: 1,
-  onClose(selectedDates) {
-    const selectedDate = selectedDates[0];
-
-    if (!selectedDate || selectedDate < Date.now()) {
-      Notify.failure('Please choose a date in the future');
-      refs.btnStart.disabled = true;
-    } else {
-      refs.btnStart.disabled = false;
-    }
-  },
-};
-
-flatpickrInstance = flatpickr('#datetime-picker', options);
