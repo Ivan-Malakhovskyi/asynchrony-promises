@@ -11,7 +11,7 @@ const refs = {
   btnStart: document.querySelector('[data-start]'),
   day: document.querySelector('[data-days]'),
   hour: document.querySelector('[data-hours]'),
-  minute: document.querySelector('[data-minutes'),
+  minute: document.querySelector('[data-minutes]'),
   second: document.querySelector('[data-seconds]'),
   input: document.querySelector('#datetime-picker'),
 };
