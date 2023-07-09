@@ -33,8 +33,8 @@ const refs = {
   input: document.querySelector('#datetime-picker'),
 };
 
-refs.btnStart.addEventListener('click', onCheckUserDate);
 refs.btnStart.disabled = true;
+refs.btnStart.addEventListener('click', onCheckUserDate);
 
 function updateClockValue(formattedTime) {
   const { days, hours, minutes, seconds } = formattedTime;
@@ -51,7 +51,7 @@ function onCheckUserDate(evt) {
     evt.target.disabled = false;
 
     Notify.success('The timer has started');
-
+    evt.target.disabled = true;
     clearInterval(intervalId);
 
     intervalId = setInterval(() => {
@@ -95,6 +95,6 @@ function addLeadingZero(value) {
   return String(value).padStart(2, '0');
   //- 1 => 01
 }
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
+// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
+// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
+// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
