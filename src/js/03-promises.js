@@ -1,13 +1,13 @@
 import { Notify } from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
 
-const selectors = {
+const refs = {
   buttonSubmit: document.querySelector('button'),
   form: document.querySelector('.form'),
 };
 
-selectors.buttonSubmit.addEventListener('click', handlerUpdateUserInput);
-selectors.form.addEventListener('submit', handlerUpdateUserInput);
+refs.buttonSubmit.addEventListener('click', handlerUpdateUserInput);
+refs.form.addEventListener('submit', handlerUpdateUserInput);
 
 function handlerUpdateUserInput(evt) {
   evt.preventDefault();
@@ -30,7 +30,7 @@ function handlerUpdateUserInput(evt) {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
       );
 
-    selectors.form.reset();
+    refs.form.reset();
   }
 }
 
